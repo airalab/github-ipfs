@@ -2,7 +2,7 @@ FROM airalab/ipfs-cloud
 MAINTAINER Alexander Krupenkin <mail@akru.me>
 LABEL Description="GitHub -> IPFS mirror bot" Vendor="Airalab" Version="0.1"
 
-RUN apt-get update && apt-get install -y curl 
+RUN apt-get update && apt-get install -y curl git 
 RUN curl -SSl https://get.haskellstack.org/ | sh
 RUN apt-get autoclean
 
