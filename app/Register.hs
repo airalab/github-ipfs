@@ -16,11 +16,11 @@ ipfsAddDir = fmap (last . T.lines)
            . command "ipfs" ["add", "-rq"]
            . pure
 
-ipfsAddRepo :: Text -> Sh Text
-ipfsAddRepo repoUrl =
+ipfsAddRepo :: Text -> Text -> Sh Text
+ipfsAddRepo repoUrl branch =
     withTmpDir $ \tmp -> do
         repoPath <- toTextWarn tmp
-        run_ "git" ["clone", repoUrl, repoPath]
+        run_ "git" ["clone", repoUrl, repoPath, "-b", branch]
         ipfsAddDir repoPath
 
 repoRegister :: Text -> Object -> IO ()
@@ -31,10 +31,10 @@ repoRegister path = maybe (return ()) go . parseMeta
             repository <- meta .: "repository"
             name <- repository .: "full_name"
             url  <- repository .: "html_url"
-            return ((name :: Text), branch, url)
+            return (name :: Text, branch, url)
 
         go (name, branch, url) = shelly $ do
-            hash <- ipfsAddRepo url
+            hash <- ipfsAddRepo url branch
             mkdir_p (path </> name)
             writefile (path </> name </> branch) hash
             regHash <- ipfsAddDir path
