@@ -14,7 +14,7 @@ GitHub -> IPFS mirror
 
 ### Install
 
-    docker run airalab/github-ipfs -d -p 8080:8000/tcp -e ['REGISTRY_KEY=top_secret']
+    docker run airalab/github-ipfs -d -p 8080:8000/tcp -e 'REGISTRY_KEY=top_secret'
 
 Docker exports `8080` webhook port set webhook URI in repository `Settings`.
 
