@@ -30,11 +30,12 @@ repoRegister path = maybe (return ()) go . parseMeta
             let branch = T.takeWhileEnd (/= '/') ref
             repository <- meta .: "repository"
             name <- repository .: "full_name"
-            url <- repository .: "html_url"
-            return ((name :: Text) </> branch, url)
+            url  <- repository .: "html_url"
+            return ((name :: Text), branch, url)
 
-        go (target, url) = shelly $ do
+        go (name, branch, url) = shelly $ do
             hash <- ipfsAddRepo url
-            writefile (path </> target) hash
+            mkdir_p (path </> name)
+            writefile (path </> name </> branch) hash
             regHash <- ipfsAddDir path
             ipfsPublish regHash
