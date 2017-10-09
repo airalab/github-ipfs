@@ -2,7 +2,7 @@ name:                github-ipfs
 version:             0.1.0.0
 -- synopsis:
 -- description:
-homepage:            https://github.com/akru/github-ipfs#readme
+homepage:            https://github.com/airalab/github-ipfs#readme
 license:             BSD3
 license-file:        LICENSE
 author:              Alexander Krupenkin
@@ -30,4 +30,4 @@ executable github-ipfs
 
 source-repository head
   type:     git
-  location: https://github.com/akru/github-ipfs
+  location: https://github.com/airalab/github-ipfs

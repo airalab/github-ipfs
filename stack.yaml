@@ -9,7 +9,7 @@
 # resolver:
 #  name: custom-snapshot
 #  location: "./custom-snapshot.yaml"
-resolver: lts-8.4
+resolver: lts-9.6
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -34,9 +34,9 @@ packages:
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)
 extra-deps:
-- servant-github-webhook-0.3.0.2
+- servant-github-webhook-0.3.1.0
 - Crypto-4.2.5.1
-- shelly-1.6.8.3
+
 
 # Override default flag values for local packages and extra-deps
 flags: {
